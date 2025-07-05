@@ -211,3 +211,4 @@ export default function BladderCancerApp() {
     </div>
   );
 }
+export default BladderCancerApp;
