@@ -76,7 +76,7 @@ function App() {
   const handleCopy = async () => {
     if (treatment) {
       await navigator.clipboard.writeText(`Risk: ${risk}\nTreatment: ${treatment}`);
-      alert("Treatment plan copied to clipboard!");
+      alert("✅ Treatment plan copied to clipboard!");
     }
   };
 
@@ -112,108 +112,117 @@ function App() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-sky-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-sky-800">Bladder Cancer Risk Stratification Tool</h1>
-      <Card className="shadow-md border-sky-200">
-        <CardContent className="space-y-6 p-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label className="text-sky-800">Grade</Label>
-              <Select value={grade} onValueChange={setGrade}>
-                <SelectTrigger><SelectValue placeholder="Select Grade" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="low">Low</SelectItem>
-                  <SelectItem value="high">High</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label className="text-sky-800">Stage</Label>
-              <Select value={stage} onValueChange={setStage}>
-                <SelectTrigger><SelectValue placeholder="Select Stage" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Ta">Ta</SelectItem>
-                  <SelectItem value="T1">T1</SelectItem>
-                  <SelectItem value="CIS">CIS</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label className="text-sky-800">Tumour Size</Label>
-              <Select value={size} onValueChange={setSize}>
-                <SelectTrigger><SelectValue placeholder="Select Size" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="<3cm">&lt; 3cm</SelectItem>
-                  <SelectItem value=">3cm">&gt; 3cm</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label className="text-sky-800">Number of Tumours</Label>
-              <Select value={number} onValueChange={setNumber}>
-                <SelectTrigger><SelectValue placeholder="Select Number" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="single">Single</SelectItem>
-                  <SelectItem value="multiple">Multiple</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label className="text-sky-800">Prior Recurrence</Label>
-              <Select value={recurrence} onValueChange={setRecurrence}>
-                <SelectTrigger><SelectValue placeholder="Select Option" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="yes">Yes</SelectItem>
-                  <SelectItem value="no">No</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <Label className="text-sky-800">CIS Present</Label>
-              <Select value={cis} onValueChange={setCis}>
-                <SelectTrigger><SelectValue placeholder="Select Option" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="yes">Yes</SelectItem>
-                  <SelectItem value="no">No</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="col-span-2">
-              <Label className="text-sky-800">Date of TURBT</Label>
-              <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-            </div>
-          </div>
-          <Button onClick={handleSubmit} className="bg-sky-700 hover:bg-sky-800 text-white">Submit</Button>
-          {risk && (
-            <div className="mt-4 text-lg font-semibold text-sky-800">
-              Risk Category: <span className="text-sky-900">{risk}</span>
-            </div>
-          )}
-          {treatment && (
-            <div className="mt-2 text-base text-gray-800 border border-sky-200 rounded p-4 bg-white shadow">
-              <strong className="block mb-2 text-sky-700">Treatment Plan:</strong>
-              <p>{treatment}</p>
-              <div className="mt-4 flex space-x-2">
-                <Button onClick={handleCopy} variant="outline">Copy to Clipboard</Button>
-                <Button onClick={handleDownload} variant="secondary">Download as TXT</Button>
+    <div className="bg-gradient-to-b from-sky-100 to-white min-h-screen py-8 px-4">
+      <div className="max-w-4xl mx-auto">
+        <header className="mb-8 text-center">
+          <h1 className="text-4xl font-bold text-sky-900">UroStrat™</h1>
+          <p className="text-sky-700 text-lg mt-2">Bladder Cancer Risk Stratification & Treatment Planner</p>
+        </header>
+        <Card className="border-sky-300 shadow-xl rounded-2xl">
+          <CardContent className="space-y-6 p-6">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <Label className="text-sky-800">Grade</Label>
+                <Select value={grade} onValueChange={setGrade}>
+                  <SelectTrigger><SelectValue placeholder="Select Grade" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="low">Low</SelectItem>
+                    <SelectItem value="high">High</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-sky-800">Stage</Label>
+                <Select value={stage} onValueChange={setStage}>
+                  <SelectTrigger><SelectValue placeholder="Select Stage" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Ta">Ta</SelectItem>
+                    <SelectItem value="T1">T1</SelectItem>
+                    <SelectItem value="CIS">CIS</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-sky-800">Tumour Size</Label>
+                <Select value={size} onValueChange={setSize}>
+                  <SelectTrigger><SelectValue placeholder="Select Size" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="<3cm">&lt; 3cm</SelectItem>
+                    <SelectItem value=">3cm">&gt; 3cm</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-sky-800">Number of Tumours</Label>
+                <Select value={number} onValueChange={setNumber}>
+                  <SelectTrigger><SelectValue placeholder="Select Number" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="single">Single</SelectItem>
+                    <SelectItem value="multiple">Multiple</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-sky-800">Prior Recurrence</Label>
+                <Select value={recurrence} onValueChange={setRecurrence}>
+                  <SelectTrigger><SelectValue placeholder="Select Option" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="yes">Yes</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-sky-800">CIS Present</Label>
+                <Select value={cis} onValueChange={setCis}>
+                  <SelectTrigger><SelectValue placeholder="Select Option" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="yes">Yes</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="col-span-2">
+                <Label className="text-sky-800">Date of TURBT</Label>
+                <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
               </div>
             </div>
-          )}
-          {schedule.length > 0 && (
-            <div className="mt-6 text-base text-gray-800">
-              <h2 className="font-semibold text-lg mb-2 text-sky-800">Surveillance Schedule:</h2>
-              <ul className="list-disc list-inside">
-                {schedule.map((date, index) => (
-                  <li key={index}>{date}</li>
-                ))}
-              </ul>
-              <div className="mt-4">
-                <Button onClick={handleDownloadICS} variant="outline">Download as Calendar (.ics)</Button>
+            <Button onClick={handleSubmit} className="bg-sky-700 hover:bg-sky-800 text-white mt-2 w-full">Calculate Risk & Plan</Button>
+
+            {risk && (
+              <div className="mt-6 p-4 bg-sky-50 border border-sky-200 rounded-lg">
+                <h2 className="text-xl font-semibold text-sky-800 mb-2">📊 Risk Category:</h2>
+                <p className="text-sky-900 text-lg">{risk}</p>
               </div>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+            )}
+
+            {treatment && (
+              <div className="mt-4 bg-white border border-sky-200 rounded p-4 shadow">
+                <h2 className="text-xl font-semibold text-sky-700 mb-2">💊 Treatment Plan:</h2>
+                <p className="text-gray-800">{treatment}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Button onClick={handleCopy} variant="outline">📋 Copy</Button>
+                  <Button onClick={handleDownload} variant="secondary">⬇ Download TXT</Button>
+                </div>
+              </div>
+            )}
+
+            {schedule.length > 0 && (
+              <div className="mt-6 bg-sky-50 p-4 rounded-lg border border-sky-200">
+                <h2 className="font-semibold text-lg mb-2 text-sky-800">📅 Surveillance Schedule:</h2>
+                <ul className="list-disc list-inside text-gray-800">
+                  {schedule.map((date, index) => (
+                    <li key={index}>{date}</li>
+                  ))}
+                </ul>
+                <div className="mt-4">
+                  <Button onClick={handleDownloadICS} variant="outline">📆 Download Calendar (.ics)</Button>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
